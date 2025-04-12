@@ -1,0 +1,303 @@
+What has been modified [employees - drivers - ]
+-- employees  => post [change method to post due to the search process]
+  -- output
+       status
+       message
+       data => List<EmployeesResource>
+-----------------------------------------------------------------------------
+ -- store_employee   => post
+    -- input
+         name                   => String
+         email                  => String
+         password               => String
+         password_confirmation  => String
+         phone                  => String
+         image                  => file
+         position_id            => String
+         permission_id          => String
+         date_added             => String
+   -- output
+        status
+        message
+------------------------------------------------------------------------------
+ -- update_employee/{id}   => post
+    -- input
+         name                   => String
+         email                  => String
+         password               => String
+         password_confirmation  => String
+         phone                  => String
+         image                  => file
+         position_id            => int
+         permission_id          => int
+         date_added             => String
+    -- output
+         status
+         message
+--------------------------------------------------------------------------------
+ -- delete_employee/{id}  => delete
+    !send ID in params!
+   -- output
+        status
+        message
+--------------------------------------------------------------------------------
+ -- clients   => get
+    -- output
+         status
+         message
+         date.  => List<ClientsResource>
+--------------------------------------------------------------------------------
+ -- client_details. => get
+   -- output
+        status
+        message
+        data.    => List<ClientsDetailsResource>
+
+--------------------------------------------------------------------------------
+ -- change_status_order  => post
+   -- input
+	id            => Int
+       status_order            => Int.   ( 0 => reject  || 1 => accept )
+   -- output
+        status
+        message
+--------------------------------------------------------------------------------
+-- store_driver  => post
+  -- input
+        name                    => String
+        email                   => String
+        password                => String
+        password_confirmation   => String
+        phone                   => String
+        age                     => String
+        shining_type_id         => Int
+        date_of_birth           => Date
+        date_of_employment      => Date
+        image                   => File
+        front_side_image        => File
+        back_side_image         => File
+        license_image           => File
+        driver_license_image    => File
+ -- output
+      status
+      message
+--------------------------------------------------------------------------------
+ -- drivers  => post [change method to post due to the search process]
+     -- output
+            status
+            message
+            data => List<DriverResource>
+--------------------------------------------------------------------------------
+
+-- add_driver_order  => post
+    id.           =>Int
+--------------------------------------------------------------------------------
+-- get_position. => get
+      -- output'
+            status
+            message
+            data  => List<PositionResource>
+--------------------------------------------------------------------------------
+ -- reset_position => post
+      -- input
+         Id.                      => Int
+         updated_value.   => String
+         status                 => Int.   ( 0 => delete || 1 => update )
+      -- output
+           statues
+           message
+--------------------------------------------------------------------------------
+-- add_authority.  => post
+      -- input
+          authority_name    => String
+          authority_type.     => List<String>
+      -- output
+            status
+            message
+--------------------------------------------------------------------------------
+ -- get_authorities.    => get
+      -- output
+            status
+            message
+            data.             => List <AuthoritiesResource>
+--------------------------------------------------------------------------------
+-- add_address.      => post
+      -- input
+           building_name          => String
+           flat _number             => Int
+           street                       => String
+           distinctive_mark.       => String
+           address                   => String
+           phone.                     => String
+       -- output
+             status
+             message
+--------------------------------------------------------------------------------
+ -- get_address.        => get
+     -- output
+            status
+            message
+            data.            => List <AddressResource>
+--------------------------------------------------------------------------------
+-- get_products     => get
+  -- output
+      status
+      message
+      data.           => List <ProductsResource>
+--------------------------------------------------------------------------------
+-- get_products_details.  => get
+     -- output
+           status
+           message
+           data.          => List<ProductsDetailsResource>
+--------------------------------------------------------------------------------
+-- add_products.   => post
+      -- input
+            product_desc       => String
+            category.             => String
+            image                 => List<image>
+            video.                 => Video
+            advantages.        => List<String>
+            price.                  => Int
+      -- output
+           status
+           message
+--------------------------------------------------------------------------------
+-- get_shipping__type     => get
+     -- output
+           status
+           message
+           shining_type.    => Int    (0 => car || 1 => motorcycle || 2 => fizzy || 3 => bike)
+--------------------------------------------------------------------------------
+-- get_governorates     => get
+      -- output.
+          status
+          message
+          type.    => String
+
+_______________________________________________________________________________
+
+______________________________ Resource________________________________________
+
+-- UsersResource
+      id                     => Int
+      image.              => String
+      full_name          => String
+      email                => String
+      job                    => String
+      phone                => String
+      position              => String
+      created_at          => date
+      added_by           => String
+      related_orders.   => List<UsersOrdersResource>
+
+         -- UsersOrdersResource
+                order_id.                   => String
+                client.                       => String
+                product.                    => String
+                product_category       => String
+                price.                        => Int
+                created_at.                => Date
+                driver.                       => String
+                 status                        => String
+
+       related_activities.   => List<UsersGeneralActivitiesResource>
+
+           -- UsersGeneralActivitiesResource
+                 activity_id.                  => String
+                 activity_type.              => String
+                 created_at.                 => Date
+---------------------------------------------------------------------
+ -- ClientsResource
+       Id.                             => Int
+       full_name                   => String
+       phone                         => String
+       email                          =>. String
+       order_counts.              => Int
+----------------------------------------------------------------------
+-- ClientsDetailsResource
+    Id                               => Int
+    full_name.                   => String
+    phobe                         => String
+    email.                         => String
+    related_order.              => List <ClientsOrdersDetailsResource>
+
+       -- ClientsOrdersDetailsResource
+                order_id.                   => String
+                product                     => String
+                product_category.      => String.
+                price                         => Int
+                created_at.                => Date
+                status                        => String
+----------------------------------------------------------------------
+-- DriverDetailsResource
+       image.                       => String
+       full_name.                  => String
+       age                           => Int
+       date_of_birth              => Date
+       shining_type               => Int
+       front_id.                      => String
+       back_id                       => String
+       front_driving_license.    => String
+       back_driving_license.    => String
+       phone                          => Int
+       email.                          => String
+       hiring_date.                  => Date
+       added_by.                    => String
+       related_orders.              => List<DriverOrdersResource>
+
+           -- DriverOrdersResource
+                    order_id.               => Int
+                    client.                   => String
+                    product                 =>. String
+                    product_category.  => String
+                    price                     => Int
+                    created_at.            => Date
+                    driver                    => String
+                    order_statue.         => Int (0 => reject  || 1 => success || 2 => pending || 3 =>)
+----------------------------------------------------------------------
+-- PositionResource
+        positionName.       => String
+        added_by.             => String
+----------------------------------------------------------------------
+-- AuthoritiesResource
+          name             => List<String>
+          description      => List<String>
+----------------------------------------------------------------------
+-- AddressResource
+           building_name          => String
+           street                       => String
+           distinctive_mark.       => String
+           address                    => String
+           phone                      => String
+----------------------------------------------------------------------
+-- ProductsResource
+      Id                => Int
+      image          => String
+      category     => List<String>
+      amount       => Int
+      stock.         => Int
+      desc            => String
+      price            => Int
+      created_at.   => Date
+      added_by.    => String
+----------------------------------------------------------------------
+ -- ProductsDetailsResource
+      created_at.            => Date
+      image.                   => List<image>
+      product_details       =>. String
+      product_desc         => List<String>
+      category.               => String
+      size                      => List<Int>
+      color                     => List<String>
+      price                     => List<Int>
+      rating                    => List<RatingResource>
+
+          -- RatingResource
+                 numbers.              =>List<Int>
+                 ratingValue           => (1=> one  || 2 => two || 3 => three || 4 => four || 5 => five)
+                 ratingName.         => List<String>
+                 ratingComment    =>List<String>
+                 created_at.          => Date
+
+

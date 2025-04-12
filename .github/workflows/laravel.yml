@@ -63,7 +63,7 @@ jobs:
           DB_DATABASE: test_db
           DB_USERNAME: root
           DB_PASSWORD: root
-- name: 🟢 Deploy (simulated)
+- name: Deploy (simulated)
         run: |
           echo "🚀 Starting deploy to production server..."
           echo "🔐 Connecting via SSH..."

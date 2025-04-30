@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use App\Bases\Facades\ApiResponse;
 
 return [
 
@@ -209,6 +210,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'ApiResponse' => ApiResponse::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
